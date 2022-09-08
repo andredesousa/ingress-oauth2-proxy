@@ -24,7 +24,7 @@ Follow the next instructions to configure and run the project on your local mach
   - `OAUTH2_PROXY_CLIENT_ID`
   - `OAUTH2_PROXY_CLIENT_SECRET`
   - `OAUTH2_PROXY_COOKIE_SECRET`
-  - `OAUTH2_PROXY_HOSTNAME`
+  - `OAUTH2_PROXY_DOMAIN`
 
 ## GitHub OAuth Apps
 

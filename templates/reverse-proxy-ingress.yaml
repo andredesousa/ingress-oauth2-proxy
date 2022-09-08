@@ -4,8 +4,8 @@ kind: Ingress
 metadata:
   name: ingress
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "{{ .Values.oauth.env.hostname }}/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "{{ .Values.oauth.env.hostname }}/oauth2/start?rd=$escaped_request_uri"
+    nginx.ingress.kubernetes.io/auth-url: "{{ .Values.oauth.env.domain }}/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-signin: "{{ .Values.oauth.env.domain }}/oauth2/start?rd=$escaped_request_uri"
 spec:
   ingressClassName: nginx
   rules:
