@@ -1,0 +1,21 @@
+webapp:
+  name: protected-webapp
+  deployment:
+    image: mcr.microsoft.com/azuredocs/aks-helloworld
+    tag: v1
+    replicas: 1
+    port: 80
+oauth:
+  name: oauth2-proxy
+  deployment:
+    image: bitnami/oauth2-proxy
+    tag: 7.2.1
+    replicas: 1
+    port: 4180
+  env:
+    clientID: OAUTH2_PROXY_CLIENT_ID
+    clientSecret: OAUTH2_PROXY_CLIENT_SECRET
+    cookieSecret: OAUTH2_PROXY_COOKIE_SECRET
+    hostname: OAUTH2_PROXY_HOSTNAME
+ingress:
+  name: reverse-proxy-ingress

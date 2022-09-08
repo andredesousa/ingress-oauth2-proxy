@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.webapp.name }}"
+  labels:
+    app: "{{ .Values.webapp.name }}"
+spec:
+  replicas: {{ .Values.webapp.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: "{{ .Values.webapp.name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.webapp.name }}"
+    spec:
+      containers:
+        - name: "{{ .Values.webapp.name }}"
+          image: "{{ .Values.webapp.deployment.image }}:{{ .Values.webapp.deployment.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.webapp.deployment.port }}
+          env:
+            - name: TITLE
+              value: "Welcome to the Protected App"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.webapp.name }}"
+spec:
+  selector:
+    app: "{{ .Values.webapp.name }}"
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: {{ .Values.webapp.deployment.port }}
